@@ -8,25 +8,30 @@ extern Timer timer2;
 void goTime(uint8_t timerNumber)
 {
     uint32_t currentTime = millis();
+    bool status;
 
     if (currentTime - lastTimeCheck >= 1000)
     {
+        lastTimeCheck = currentTime;
         if (timerNumber == 1)
         {
-            // timer1.goTime
+            timer1.goTime();
+            status = timer1.finished;
         }
         else
         {
-            // timer2.goTime
+            timer2.goTime();
+            status = timer2.finished;
         }
 
-        // timerNumber == 1 ? timer1.goTime() : timer2.goTime();
+        if (status)
+        {
+            Serial.println("Timer finished");
+        }
+
+        
     }
 }
 
-void checkTimersStatus(uint8_t timerNumber)
-{
-    bool status = timerNumber == 1 ? timer1.finished : timer2.finished;
-}
 
 #endif // GOTIME_H

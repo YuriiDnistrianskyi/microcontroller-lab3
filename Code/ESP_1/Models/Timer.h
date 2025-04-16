@@ -1,7 +1,6 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-#unclude <cstdint.h>
 
 class Timer {
     public:
@@ -14,15 +13,15 @@ class Timer {
         void setTime(uint8_t h, uint8_t m, uint8_t s);
         void setHour(uint8_t h);
         void setMinutes(uint8_t m);
-        void setSeconds(uint8_t static_cast);
+        void setSeconds(uint8_t s);
         void goTime();
-}
+};
 
 Timer::Timer() {
     this->hours = 0;
     this->minutes = 0;
-    this->seconds = 0
-    this->finished = false;
+    this->seconds = 0;
+    this->finished = false; // true
 }
 
 void Timer::setTime(uint8_t h, uint8_t m, uint8_t s) 
@@ -60,15 +59,11 @@ void Timer::goTime() {
     {
         this->seconds = 59;
         this->minutes--;
-        if (this->minutes < 0 && this->hours > 0) 
+        if (this->minutes <= 0 && this->hours > 0) 
         {
             this->minutes = 59;
             this->hours--;
         } 
-        else 
-        {
-            this->finished = true;
-        }
     }
     else 
     {
