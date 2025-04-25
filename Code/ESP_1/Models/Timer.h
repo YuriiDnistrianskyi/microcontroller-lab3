@@ -6,14 +6,14 @@ class Timer {
         uint8_t hours : 7;
         uint8_t minutes : 6;
         uint8_t seconds : 6;
+        bool isFinished; 
         void checkTimer();
 
     public:
-        bool finished; 
-
         Timer();
-        void setHour(uint8_t h);
+        void setHours(uint8_t h);
         void setMinutes(uint8_t m);
+        bool getFinished();
         void goTimer();
 };
 
@@ -21,11 +21,11 @@ Timer::Timer() {
     this->hours = 0;
     this->minutes = 0;
     this->seconds = 0;
-    this->finished = false;
+    this->isFinished = false;
 }
 
 
-void Timer::setHour(uint8_t h) 
+void Timer::setHours(uint8_t h) 
 {
     this->hours = h;
     checkTimer();
@@ -37,15 +37,20 @@ void Timer::setMinutes(uint8_t m)
     checkTimer();
 }
 
+bool Timer::getFinished()
+{
+    return this->isFinished;
+}
+
 void Timer::checkTimer() 
 {
     if (this->hours <= 0 && this->minutes <= 0 && this->seconds <= 0) 
     {
-        this->finished = true;
+        this->isFinished = true;
     } 
     else 
     {
-        this->finished = false;
+        this->isFinished = false;
     }
 }
 
@@ -67,7 +72,7 @@ void Timer::goTimer() {
     }
     else 
     {
-        this->finished = true;
+        this->isFinished = true;
     }
 
 }

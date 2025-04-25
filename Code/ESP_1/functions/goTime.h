@@ -7,7 +7,7 @@ extern uint32_t lastTimeCheck;
 extern Timer timer1;
 extern Timer timer2;
 
-void goTime(uint8_t timerNumber)
+void goTime(Timer &timer)
 {
     uint32_t currentTime = millis();
     bool status;
@@ -15,19 +15,12 @@ void goTime(uint8_t timerNumber)
     if (currentTime - lastTimeCheck >= 1000)
     {
         lastTimeCheck = currentTime;
-        if (timerNumber == 1)
-        {
-            timer1.goTimer();
-            status = timer1.finished;
-        }
-        else
-        {
-            timer2.goTimer();
-            status = timer2.finished;
-        }
+        
+        timer.goTimer();
+        status = timer.getFinished();
 
         if (status)
-            finishTimer(); // сигнал про зікінчення 
+            finishTimer();
     }
 }
 
