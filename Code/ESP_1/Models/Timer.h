@@ -1,56 +1,56 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-
 class Timer {
-    public:
+    private:
         uint8_t hours : 7;
         uint8_t minutes : 6;
         uint8_t seconds : 6;
+        void checkTimer();
+
+    public:
         bool finished; 
 
         Timer();
-        void setTime(uint8_t h, uint8_t m, uint8_t s);
         void setHour(uint8_t h);
         void setMinutes(uint8_t m);
-        void setSeconds(uint8_t s);
-        void goTime();
+        void goTimer();
 };
 
 Timer::Timer() {
     this->hours = 0;
     this->minutes = 0;
     this->seconds = 0;
-    this->finished = false; // true
+    this->finished = false;
 }
 
-void Timer::setTime(uint8_t h, uint8_t m, uint8_t s) 
-{
-    this->hours = h;
-    this->minutes = m;
-    this->seconds = s;
-    if (h != 0 && m != 0 && s != 0) 
-    {
-        this->finished = false;
-    }
-}
 
 void Timer::setHour(uint8_t h) 
 {
     this->hours = h;
+    checkTimer();
 }
 
 void Timer::setMinutes(uint8_t m) 
 {
     this->minutes = m;
+    checkTimer();
 }
 
-void Timer::setSeconds(uint8_t s) 
+void Timer::checkTimer() 
 {
-    this->seconds = s;
+    if (this->hours <= 0 && this->minutes <= 0 && this->seconds <= 0) 
+    {
+        this->finished = true;
+    } 
+    else 
+    {
+        this->finished = false;
+    }
 }
 
-void Timer::goTime() {
+
+void Timer::goTimer() {
     if (this->seconds > 0)
     {
         this->seconds--;

@@ -1,6 +1,8 @@
 #ifndef GOTIME_H
 #define GOTIME_H
 
+#include "finishTimer.h"
+
 extern uint32_t lastTimeCheck;
 extern Timer timer1;
 extern Timer timer2;
@@ -15,21 +17,17 @@ void goTime(uint8_t timerNumber)
         lastTimeCheck = currentTime;
         if (timerNumber == 1)
         {
-            timer1.goTime();
+            timer1.goTimer();
             status = timer1.finished;
         }
         else
         {
-            timer2.goTime();
+            timer2.goTimer();
             status = timer2.finished;
         }
 
         if (status)
-        {
-            Serial.println("Timer finished");
-        }
-
-        
+            finishTimer(); // сигнал про зікінчення 
     }
 }
 

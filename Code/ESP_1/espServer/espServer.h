@@ -1,7 +1,7 @@
 #ifndef ESPSERVER_H
 #define ESPSERVER_H
 
-#include "../info/wifiInfo.h"
+#include "wifiInfo.h"
 
 void initWifi() 
 {
