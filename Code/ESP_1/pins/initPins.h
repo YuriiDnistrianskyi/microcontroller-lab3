@@ -9,19 +9,19 @@ volatile uint32_t lastDebounceTime2 = 0;
 volatile uint32_t lastDebounceTime3 = 0;
 volatile uint32_t lastDebounceTime4 = 0;
 
-void button1Handler() 
+void IRAM_ATTR button1Handler() 
 {
     uint32_t = currentTime = millis();
 
     if ((currentTime - lastDebounceTime1) > DEBOUNCE_TIME)
     {
         lastDebounceTime1 = currentTime;
+            
 
-        
     }
 }
 
-void button2Handler() 
+void IRAM_ATTR button2Handler() 
 {
     uint32_t = currentTime = millis();
 
@@ -33,7 +33,7 @@ void button2Handler()
     }
 }
 
-void button3Handler() 
+void IRAM_ATTR button3Handler() 
 {
     uint32_t = currentTime = millis();
 
@@ -45,7 +45,7 @@ void button3Handler()
     }
 }
 
-void button4Handler() 
+void IRAM_ATTR button4Handler() 
 {
     uint32_t = currentTime = millis();
 
