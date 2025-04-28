@@ -1,6 +1,7 @@
 #ifndef GOTIME_H
 #define GOTIME_H
 
+#include "updateDisplay.h"
 #include "finishTimer.h"
 
 extern uint32_t lastTimeCheck;
@@ -18,6 +19,8 @@ void goTime(Timer &timer)
         
         timer.goTimer();
         status = timer.getFinished();
+        updateDisplay(timer);
+
 
         if (status)
             finishTimer();
