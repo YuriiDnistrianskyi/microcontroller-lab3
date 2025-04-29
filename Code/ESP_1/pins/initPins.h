@@ -3,12 +3,11 @@
 
 #include "pins.h"
 #include "../Models/ProgramState.h" //
-#include "../Models/TimerState.h" //
-
 
 #define DEBOUNCE_TIME 50
 
-extern 
+// extern Timer timer1;
+// extern Timer timer2;
 extern uint8_t timerNumber;
 extern ProgramState programState;
 
@@ -57,16 +56,13 @@ void IRAM_ATTR button4Handler()
     if ((currentTime - lastDebounceTime4) > DEBOUNCE_TIME)
     {
         lastDebounceTime4 = currentTime;
-
-        Timer currentTimer =  (timerNumber == 0) ? timer1 : timer2;
-        // TimerState timerState = currentTimer.getState();
         if (programState == go) 
         {
+            Timer currentTimer =  (timerNumber == 0) ? timer1 : timer2; // name
             // скидавння в 0
         }
         else 
         {
-            currentTimer.onTimer();
             programState = go;
         }
     }

@@ -1,25 +1,21 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-#include "TimerState.h"
-
 class Timer {
     private:
         uint8_t hours : 7;
         uint8_t minutes : 6;
         uint8_t seconds : 6;
-        TimerState state;
-        void checkTimer();
+        bool isFinished;
 
     public:
         Timer();
         void setHours(uint8_t h);
         void setMinutes(uint8_t m);
-        void onTimer();
         uint8_t getHours();
         uint8_t getMinutes();
         uint8_t getSeconds();
-        TimerState getState();
+        bool getFinished();
         void goTimer();
 };
 
@@ -27,24 +23,19 @@ Timer::Timer() {
     this->hours = 0;
     this->minutes = 0;
     this->seconds = 0;
-    this->state = off;
+    this->isFinished = false;
 }
 
 void Timer::setHours(uint8_t h) 
 {
     this->hours = h;
-    checkTimer();
+    this->isFinished = false;
 }
 
 void Timer::setMinutes(uint8_t m) 
 {
     this->minutes = m;
-    checkTimer();
-}
-
-void Timer::onTimer()
-{
-    this->status = on;
+    this->isFinished = false;
 }
 
 uint8_t Timer::getHours()
@@ -62,26 +53,12 @@ uint8_t Timer::getSeconds()
     return this->seconds;
 }
 
-TimerState Timer::getState()
+void Timer::getFinished()
 {
-    return this->state;
+    return this->isFinished;
 }
-
-void Timer::checkTimer() 
-{
-    if (this->hours <= 0 && this->minutes <= 0 && this->seconds <= 0) 
-    {
-        this->isFinished = true;
-    } 
-    else 
-    {
-        this->isFinished = false;
-    }
-}
-
 
 void Timer::goTimer() {
-    this->state = on; //
     if (this->seconds > 0)
     {
         this->seconds--;
@@ -98,9 +75,8 @@ void Timer::goTimer() {
     }
     else 
     {
-        this->state = finished;
+        this->isFinished = true;
     }
-
 }
 
 #endif // TIMER_H
