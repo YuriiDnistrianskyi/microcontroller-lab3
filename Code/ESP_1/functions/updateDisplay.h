@@ -9,6 +9,12 @@ void updateDisplay(Timer &timer)
     uint8_t minutes = timer.getMinutes();
     uint8_t seconds = timer.getSeconds();
 
+    // або один метод для витягнення всього часу, а не три
+    // як тобі зручніше
+
+
+
+
     // display
 }
 

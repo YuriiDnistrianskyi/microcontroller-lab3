@@ -3,6 +3,7 @@
 
 #include "updateDisplay.h"
 #include "finishTimer.h"
+#include "../Models/TimerState.h"
 
 extern uint32_t lastTimeCheck;
 extern Timer timer1;
@@ -11,18 +12,16 @@ extern Timer timer2;
 void goTime(Timer &timer)
 {
     uint32_t currentTime = millis();
-    bool status;
 
     if (currentTime - lastTimeCheck >= 1000)
     {
         lastTimeCheck = currentTime;
         
         timer.goTimer();
-        status = timer.getFinished();
-        updateDisplay(timer);
+        TimerState timerState = timer.getStatus();
+        updateDisplay(&timer);
 
-
-        if (status)
+        if (timerState == finished)
             finishTimer();
     }
 }

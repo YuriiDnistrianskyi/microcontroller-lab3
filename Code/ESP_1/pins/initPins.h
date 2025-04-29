@@ -2,7 +2,15 @@
 #define INITPINS_H
 
 #include "pins.h"
+#include "../Models/ProgramState.h" //
+#include "../Models/TimerState.h" //
+
+
 #define DEBOUNCE_TIME 50
+
+extern 
+extern uint8_t timerNumber;
+extern ProgramState programState;
 
 volatile uint32_t lastDebounceTime1 = 0;
 volatile uint32_t lastDebounceTime2 = 0;
@@ -16,8 +24,7 @@ void IRAM_ATTR button1Handler()
     if ((currentTime - lastDebounceTime1) > DEBOUNCE_TIME)
     {
         lastDebounceTime1 = currentTime;
-            
-
+        timerNumber = !timerNumber;
     }
 }
 
@@ -28,8 +35,7 @@ void IRAM_ATTR button2Handler()
     if ((currentTime - lastDebounceTime2) > DEBOUNCE_TIME)
     {
         lastDebounceTime2 = currentTime;
-
-
+        programState = hour;
     }
 }
 
@@ -40,8 +46,7 @@ void IRAM_ATTR button3Handler()
     if ((currentTime - lastDebounceTime3) > DEBOUNCE_TIME)
     {
         lastDebounceTime3 = currentTime;
-
-
+        programState = minute;
     }
 }
 
@@ -53,7 +58,17 @@ void IRAM_ATTR button4Handler()
     {
         lastDebounceTime4 = currentTime;
 
-
+        Timer currentTimer =  (timerNumber == 0) ? timer1 : timer2;
+        // TimerState timerState = currentTimer.getState();
+        if (programState == go) 
+        {
+            // скидавння в 0
+        }
+        else 
+        {
+            currentTimer.onTimer();
+            programState = go;
+        }
     }
 }
 
