@@ -17,7 +17,8 @@ void goTime(Timer &timer)
         lastTimeCheck = currentTime;
         
         timer.goTimer();
-        updateDisplay(&timer);
+        Timer &timerToDisplay = timer;
+        updateDisplay(timerToDisplay);
 
         bool isFinishedTimer = timer.getFinished();
 

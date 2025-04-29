@@ -2,12 +2,14 @@
 #define INITPINS_H
 
 #include "pins.h"
-#include "../Models/ProgramState.h" //
+#include "../Models/Timer.h"
+#include "../Models/ProgramState.h"
+#include "../functions/updateDisplay.h"
 
 #define DEBOUNCE_TIME 50
 
-// extern Timer timer1;
-// extern Timer timer2;
+extern Timer timer1;
+extern Timer timer2;
 extern uint8_t timerNumber;
 extern ProgramState programState;
 
@@ -18,7 +20,7 @@ volatile uint32_t lastDebounceTime4 = 0;
 
 void IRAM_ATTR button1Handler() 
 {
-    uint32_t = currentTime = millis();
+    uint32_t currentTime = millis();
 
     if ((currentTime - lastDebounceTime1) > DEBOUNCE_TIME)
     {
@@ -29,7 +31,7 @@ void IRAM_ATTR button1Handler()
 
 void IRAM_ATTR button2Handler() 
 {
-    uint32_t = currentTime = millis();
+    uint32_t currentTime = millis();
 
     if ((currentTime - lastDebounceTime2) > DEBOUNCE_TIME)
     {
@@ -40,7 +42,7 @@ void IRAM_ATTR button2Handler()
 
 void IRAM_ATTR button3Handler() 
 {
-    uint32_t = currentTime = millis();
+    uint32_t currentTime = millis();
 
     if ((currentTime - lastDebounceTime3) > DEBOUNCE_TIME)
     {
@@ -51,7 +53,7 @@ void IRAM_ATTR button3Handler()
 
 void IRAM_ATTR button4Handler() 
 {
-    uint32_t = currentTime = millis();
+    uint32_t currentTime = millis();
 
     if ((currentTime - lastDebounceTime4) > DEBOUNCE_TIME)
     {
@@ -59,8 +61,9 @@ void IRAM_ATTR button4Handler()
         if (programState == go) 
         {
             Timer currentTimer =  (timerNumber == 0) ? timer1 : timer2; // name
+            Timer &currentTimerToDisplay = currentTimer;
             currentTimer.reset();
-            updateDisplay(currentTimer);
+            updateDisplay(currentTimerToDisplay);
         }
         else 
         {

@@ -12,7 +12,7 @@
 
 Timer timer1;
 Timer timer2;
-ProgramState programState;
+ProgramState programState = wait;
 uint8_t timerNumber = 0;
 uint32_t lastTimeCheck = 0;
 
@@ -29,7 +29,7 @@ void loop()
 
   switch(programState) 
   {
-    case wait: // можна на default зробити
+    case wait: // можна на default зробити або (якщо дії взагалі не виконуються), то прибрати
       // просто відображує таймери (обраний таймер підсвічується)
       break;
     case go:

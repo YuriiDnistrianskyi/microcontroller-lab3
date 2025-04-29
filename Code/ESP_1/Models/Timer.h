@@ -68,7 +68,7 @@ String Timer::getTime()
     return time;
 }
 
-void Timer::getFinished()
+bool Timer::getFinished()
 {
     return this->isFinished;
 }
