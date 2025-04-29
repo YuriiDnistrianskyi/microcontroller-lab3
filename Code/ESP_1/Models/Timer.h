@@ -12,6 +12,7 @@ class Timer {
         Timer();
         void setHours(uint8_t h);
         void setMinutes(uint8_t m);
+        void reset();
         uint8_t getHours(); //
         uint8_t getMinutes(); //
         uint8_t getSeconds(); //
@@ -37,6 +38,13 @@ void Timer::setMinutes(uint8_t m)
 {
     this->minutes = m;
     this->isFinished = false;
+}
+
+void Timer::reset()
+{
+    this->hours = 0;
+    this->minutes = 0;
+    this->seconds = 0;
 }
 
 uint8_t Timer::getHours()

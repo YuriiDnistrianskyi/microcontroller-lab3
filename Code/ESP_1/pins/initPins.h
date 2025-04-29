@@ -59,7 +59,8 @@ void IRAM_ATTR button4Handler()
         if (programState == go) 
         {
             Timer currentTimer =  (timerNumber == 0) ? timer1 : timer2; // name
-            // скидавння в 0
+            currentTimer.reset();
+            updateDisplay(currentTimer);
         }
         else 
         {

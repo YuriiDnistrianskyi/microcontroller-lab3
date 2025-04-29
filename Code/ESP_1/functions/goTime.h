@@ -22,7 +22,10 @@ void goTime(Timer &timer)
         bool isFinishedTimer = timer.getFinished();
 
         if (isFinishedTimer == 1)
+        {
             finishTimer();
+            // timer->isFinished = false;
+        }
     }
 }
 
