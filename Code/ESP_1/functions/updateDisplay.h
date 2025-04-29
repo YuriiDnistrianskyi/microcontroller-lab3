@@ -11,6 +11,7 @@ void updateDisplay(Timer &timer)
 
     // або один метод для витягнення всього часу, а не три
     // як тобі зручніше
+    String timerTime = timer.getTime(); // for example "14:23:39"
 
 
 

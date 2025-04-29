@@ -12,9 +12,10 @@ class Timer {
         Timer();
         void setHours(uint8_t h);
         void setMinutes(uint8_t m);
-        uint8_t getHours();
-        uint8_t getMinutes();
-        uint8_t getSeconds();
+        uint8_t getHours(); //
+        uint8_t getMinutes(); //
+        uint8_t getSeconds(); //
+        String getTime();
         bool getFinished();
         void goTimer();
 };
@@ -51,6 +52,12 @@ uint8_t Timer::getMinutes()
 uint8_t Timer::getSeconds()
 {
     return this->seconds;
+}
+
+String Timer::getTime()
+{
+    String time = String(this->hours) + ":" + String(this->minutes) + ":" + String(this->seconds);
+    return time;
 }
 
 void Timer::getFinished()
