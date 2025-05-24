@@ -1,7 +1,4 @@
-#ifndef UPDATEDISPLAY_H
-#define UPDATEDISPLAY_H
-
-#include "../pins/pins.h" // for display pins
+#include "../include/updateDisplay.h"
 
 void updateDisplay(Timer &timer) // можливо краще передати номер таймера, бо потрібно визначити у який рядок вивести на дисплеї
 {
@@ -15,5 +12,3 @@ void updateDisplay(Timer &timer) // можливо краще передати �
 
     // display
 }
-
-#endif // UPDATEDISPLAY_H

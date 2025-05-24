@@ -1,10 +1,9 @@
-#ifndef INITPINS_H
-#define INITPINS_H
+#include "../include/initPins.h"
 
-#include "pins.h"
-#include "../Models/Timer.h"
-#include "../Models/ProgramState.h"
-#include "../functions/updateDisplay.h"
+#include "../include/config.h"
+#include "../include/Timer.h"
+#include "../include/ProgramState.h"
+#include "../include/updateDisplay.h"
 
 #define DEBOUNCE_TIME 50
 
@@ -84,5 +83,3 @@ void initPins()
     attachInterrupt(digitalPinToInterrupt(button3), button3Handler, RISING);
     attachInterrupt(digitalPinToInterrupt(button4), button4Handler, RISING);
 }
-
-#endif // INITPINS_H

@@ -1,20 +1,17 @@
 #include <Arduino.h>
 
-#include "pins/initPins.h"
-#include "espServer/espServer.h"
+#include "include/initPins.h"
+#include "include/espServer.h"
 
-#include "Models/Timer.h"
-#include "Models/ProgramState.h"
+#include "include/Timer.h"
+#include "include/ProgramState.h"
 
-#include "functions/goTime.h"
-#include "functions/setTime.h"
-
+#include "include/timerFunc.h"
 
 Timer timer1;
 Timer timer2;
 ProgramState programState = wait;
 uint8_t timerNumber = 0;
-uint32_t lastTimeCheck = 0;
 
 void setup() 
 {
